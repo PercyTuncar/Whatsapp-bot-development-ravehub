@@ -1,33 +1,21 @@
-const { RaveHubBot } = require("./lib/client")
-const { addWorkCommand } = require("./plugins/work")
-const { addProfileCommand } = require("./plugins/profile")
-const { addMenuCommand } = require("./plugins/menu")
-const config = require("./config")
+const { Client, logger } = require("./lib/client")
+const { DATABASE, VERSION } = require("./config")
 
-console.log(`
-🎵 ================================ 🎵
-    RAVEHUB BOT v${config.VERSION}
-    Ciudad Virtual de Música Electrónica
-🎵 ================================ 🎵
-`)
-
-async function start() {
+const start = async () => {
+  logger.info(`Ravehub Bot ${VERSION}`)
   try {
-    const bot = new RaveHubBot()
-
-    // Cargar plugins
-    addWorkCommand(bot)
-    addProfileCommand(bot)
-    addMenuCommand(bot)
-
-    console.log("📦 Plugins cargados exitosamente")
-    console.log("🔌 Iniciando conexión...")
-
+    await DATABASE.authenticate({ retry: { max: 3 } })
+    logger.info("Conexión a la base de datos establecida correctamente.")
+  } catch (error) {
+    const databaseUrl = process.env.DATABASE_URL
+    logger.error({ msg: "No se pudo conectar a la base de datos", error: error.message, databaseUrl })
+    return process.exit(1)
+  }
+  try {
+    const bot = new Client()
     await bot.connect()
   } catch (error) {
-    console.error("❌ Error iniciando el bot:", error)
-    process.exit(1)
+    logger.error(error)
   }
 }
-
 start()

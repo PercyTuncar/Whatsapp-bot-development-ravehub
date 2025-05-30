@@ -1,0 +1,47 @@
+{
+  "extra": {
+    "init_session": "[{0}] Iniciando Nueva Sesión de Ravehub",
+    "load_session": "[{0}] Comprobando estado de sesión",
+    "invalid_session": "[{0}] {1} ID DE SESIÓN INVÁLIDA, ESCANEA DE NUEVO!!!",
+    "success_session": "[{0}] Sesión validada exitosamente.",
+    "connecting": "[{0}] Conectando a Ravehub...",
+    "connected": "[{0}] ¡Conectado a Ravehub! {1}",
+    "instance_close": "[{0}] La Conexión se ha Cerrado",
+    "instance_restart": "[{0}] La Instancia se está Reiniciando...",
+    "reconnect": "[{0}] Reconectando...({1})",
+    "reconnect_after": "[{0}] Reconectar después de 1 minuto",
+    "another_login": "[{0}] La Sesión se ha iniciado en otro dispositivo.",
+    "error_message": "```---REPORTE DE ERROR RAVEHUB---\n\nVersión : {0}\nMensaje : {1}\nError   : {2}\nJid     : {3}\nComando : {4}\nPlataforma : {5}```\n\n```-----``` *Hecho con ❤️ para la comunidad Ravehub* ```-----```",
+    "deleted_message": "MensajeBorrado",
+    "plugin_install": "[{0}] Instalando Plugins de Ravehub...",
+    "plugin_installed": "[{0}] Instalado {1}",
+    "plugins_installed": "[{0}] Plugins de Ravehub Instalados",
+    "plugin_install_error": "[{0}] Error Instalando {1}, Borrando Plugin",
+    "plugin_not_found": "[{0}] Plugin {1} No Encontrado (404), Borrando Plugin",
+    "group_cmd": "Este Comando solo se puede utilizar en Grupos de Ravehub."
+  },
+  "plugins": {
+    "common": {
+      "reply_to_message": "Cita un Mensaje...",
+      "not_admin": "No soy Administrador...",
+      "reply_to_image": "Cita una Imagen.",
+      "update": "_Actualizado_"
+    },
+    "menu": {
+      "help": "```╭────────────────╮\n      RAVEHUB BOT\n╰────────────────╯\n\n╭────────────────\n│ Prefijo : {0}\n│ Usuario : {1}\n│ Hora : {2}\n│ Día : {3}\n│ Fecha : {4}\n│ Versión : {5}\n│ Plugins : {6}\n│ RAM : {7}\n│ Encendido : {8}\n│ Plataforma : {9}\n╰────────────────```",
+      "menu": "```╭═══ RAVEHUB ═══⊷\n┃🎵╭──────────────\n┃🎵│ Prefijo : {0}\n┃🎵│ Usuario : {1}\n┃🎵│ Hora : {2}\n┃🎵│ Día : {3}\n┃🎵│ Fecha : {4}\n┃🎵│ Versión : {5}\n┃🎵│ Plugins : {6}\n┃🎵│ RAM : {7}\n┃🎵│ Encendido : {8}\n┃🎵│ Plataforma : {9}\n┃🎵╰───────────────\n╰═════════════════⊷```"
+    },
+    "work": {
+      "desc": "Sistema de trabajos virtuales de Ravehub",
+      "example": "> *Trabajos disponibles en Ravehub:*\n- !work dj - Trabajar como DJ\n- !work security - Seguridad de eventos\n- !work promoter - Promocionar fiestas\n- !work dealer - Vender en el mercado negro\n\n*Cada trabajo tiene diferentes salarios y horarios*",
+      "cooldown": "⏳ Debes esperar {0} minutos antes de volver a trabajar.",
+      "invalid_job": "❌ Ese trabajo no existe. Usa: dj, security, promoter, dealer",
+      "success": "💼 *{0}*\n\n{1}\n\n💰 Has ganado {2} monedas Ravehub.",
+      "level_up": "\n\n🌟 ¡Has subido de nivel en este trabajo! Ahora ganarás más dinero."
+    },
+    "balance": {
+      "desc": "Muestra tu balance de monedas Ravehub",
+      "info": "*💰 Balance de Ravehub*\n\n👤 *Usuario:* {0}\n💵 *Saldo:* {1} monedas\n👷‍♂️ *Trabajo actual:* {2}\n⭐ *Nivel:* {3}"
+    }
+  }
+}
