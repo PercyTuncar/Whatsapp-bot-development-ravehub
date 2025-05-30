@@ -12,12 +12,12 @@ bot(
     if (!match) {
       const jobList = Object.entries(jobs)
         .map(([id, job]) => {
-          return `• !work ${id} - ${job.name}: ${job.description}`
+          return `${job.emoji} !work ${id} - *${job.name}*\n   ${job.description}`
         })
-        .join("\n")
+        .join("\n\n")
 
       return await message.send(
-        `🏙️ *Trabajos en Ravehub*\n\n${jobList}\n\n💡 *Tip:* Cada trabajo tiene diferentes salarios y puedes subir de nivel trabajando.`,
+        `🏙️ *Trabajos en Ravehub*\n\n${jobList}\n\n💡 *Tip:* Cada trabajo tiene diferentes salarios y puedes subir de nivel trabajando.\n⏰ *Cooldown:* 1 hora entre trabajos`,
       )
     }
 

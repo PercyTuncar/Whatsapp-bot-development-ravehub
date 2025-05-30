@@ -1,30 +1,25 @@
-const { bot } = require("../lib/")
+const { bot, lang } = require("../lib/")
 
 bot(
   {
     pattern: "ravehub ?(.*)",
-    desc: "Información sobre la comunidad Ravehub",
+    desc: lang.plugins.ravehub.desc,
     type: "info",
   },
   async (message, match, ctx) => {
-    const raveInfo = `🎵 *BIENVENIDO A RAVEHUB* 🎵
+    await message.send(lang.plugins.ravehub.info)
+  },
+)
 
-🌟 *¿Qué es Ravehub?*
-Ravehub es una comunidad virtual dedicada a los amantes de la música electrónica. Aquí puedes trabajar, ganar dinero virtual y ser parte de la escena underground.
+bot(
+  {
+    pattern: "info ?(.*)",
+    desc: "Información del bot Ravehub",
+    type: "info",
+  },
+  async (message, match, ctx) => {
+    const infoText = `🎵 *RAVEHUB BOT* 🎵\n\n📊 *Estadísticas:*\n• Versión: ${ctx.VERSION}\n• Plugins: ${ctx.pluginsCount}\n• RAM: ${require("../lib/utils").getRam()}\n• Encendido: ${require("../lib/utils").getUptime()}\n• Plataforma: ${require("../lib/utils").getPlatform()}\n\n🎧 *Creado para la comunidad de música electrónica*\n\n💻 *Desarrollado con:*\n• Node.js\n• Baileys\n• Sequelize\n• PM2\n\n🌟 *¡Únete a la revolución electrónica!*`
 
-💼 *Sistema de Trabajos:*
-• DJ - Mezcla música en eventos
-• Seguridad - Mantén el orden
-• Promotor - Organiza fiestas épicas  
-• Dealer - Mercado underground
-
-💰 *Economía Virtual:*
-Gana monedas trabajando y sube de nivel para obtener mejores salarios.
-
-🎶 *Únete a la revolución electrónica!*
-
-Usa !help para ver todos los comandos disponibles.`
-
-    await message.send(raveInfo)
+    await message.send(infoText)
   },
 )

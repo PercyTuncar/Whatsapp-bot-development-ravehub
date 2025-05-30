@@ -12,10 +12,11 @@ bot(
 
     let jobInfo = "Ninguno"
     if (userInfo.workType && jobs[userInfo.workType]) {
-      jobInfo = jobs[userInfo.workType].name
+      const job = jobs[userInfo.workType]
+      jobInfo = `${job.emoji} ${job.name}`
     }
 
-    const balanceText = `*💰 Balance de Ravehub*\n\n👤 *Usuario:* @${jidToNum(jid)}\n💵 *Saldo:* ${userInfo.balance} monedas\n👷‍♂️ *Trabajo actual:* ${jobInfo}\n⭐ *Nivel:* ${userInfo.workLevel}\n📊 *Trabajos realizados:* ${userInfo.totalWorked}`
+    const balanceText = `*💰 Balance de Ravehub*\n\n👤 *Usuario:* @${jidToNum(jid)}\n💵 *Saldo:* ${userInfo.balance} monedas\n👷‍♂️ *Trabajo actual:* ${jobInfo}\n⭐ *Nivel:* ${userInfo.workLevel}\n📊 *Trabajos realizados:* ${userInfo.totalWorked}\n🏆 *Reputación:* ${userInfo.reputation}\n📅 *Miembro desde:* ${new Date(userInfo.joinDate).toLocaleDateString("es")}`
 
     await message.send(balanceText, {
       contextInfo: { mentionedJid: [jid] },

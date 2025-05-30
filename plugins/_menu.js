@@ -6,9 +6,7 @@ bot(
     dontAddCommandList: true,
   },
   async (message, match, ctx) => {
-    const sorted = ctx.commands
-      .slice()
-      .sort((a, b) => (a.pattern && b.pattern ? a.pattern.localeCompare(b.pattern) : 0))
+    const sorted = ctx.commands.slice().sort((a, b) => (a.name && b.name ? a.name.localeCompare(b.name) : 0))
 
     const [date, time] = getDate()
 
@@ -31,10 +29,7 @@ bot(
     sorted.forEach((command, i) => {
       if (!command.dontAddCommandList && command.pattern !== undefined) {
         CMD_HELP.push(
-          `│ ${i + 1} ${addSpace(i + 1, sorted.length)}${textToStylist(
-            command.pattern.toString().toUpperCase(),
-            "mono",
-          )}`,
+          `│ ${i + 1} ${addSpace(i + 1, sorted.length)}${textToStylist(command.name.toUpperCase(), "mono")}`,
         )
       }
     })
@@ -42,6 +37,23 @@ bot(
     CMD_HELP.push("╰────────────────")
 
     return await message.send(CMD_HELP.join("\n"))
+  },
+)
+
+bot(
+  {
+    pattern: "list ?(.*)",
+    dontAddCommandList: true,
+  },
+  async (message, match, ctx) => {
+    const sorted = ctx.commands.slice().sort((a, b) => (a.name && b.name ? a.name.localeCompare(b.name) : 0))
+
+    const commandList = sorted
+      .filter((command) => !command.dontAddCommandList && command.pattern !== undefined)
+      .map((command) => `- *${command.name}*\n${command.desc}\n`)
+      .join("\n")
+
+    await message.send(commandList)
   },
 )
 
@@ -58,8 +70,9 @@ bot(
         const cmdType = command.type.toLowerCase()
         if (!commands[cmdType]) commands[cmdType] = []
 
-        const cmd = command.pattern.toString().trim()
-        commands[cmdType].push(cmd)
+        const isDisabled = command.active === false
+        const cmd = command.name.trim()
+        commands[cmdType].push(isDisabled ? `${cmd} [disabled]` : cmd)
       }
     })
 
